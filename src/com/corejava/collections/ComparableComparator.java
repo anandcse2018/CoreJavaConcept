@@ -124,6 +124,18 @@ class SalaryComparator implements Comparator<Employee>
     }
 }
 
+class Student{
+	int id;
+	String name;
+	float weight;
+	
+	Student(int id, String name, float weight)
+	{
+		this.id = id;
+		this.name = name;
+		this.weight = weight;
+	}
+}
 
 public class ComparableComparator
 {
@@ -161,5 +173,32 @@ public class ComparableComparator
         Collections.sort(list, new SalaryComparator());
         System.out.println("Sort by Salary (Comparator)");
         System.out.println(list);
+        
+//        *****************************************************************
+        
+        Student s1 = new Student(10,"Anand",82.5f);
+		Student s2 = new Student(9,"Aman",46.5f);
+		Student s3 = new Student(15,"Ajay",65.5f);
+		
+		List<Student> list1 = new ArrayList<>();
+		list1.addAll(Arrays.asList(s1,s2,s3));
+		
+		list1.sort((a,b)-> a.id -b.id);
+		
+		list1.sort(Comparator.comparingInt(s->s.id));
+		list1.sort(Comparator.comparingInt((Student s)->s.id).reversed());
+		
+		list1.sort(Comparator.comparing(s->s.name));
+		list1.sort(Comparator.comparing((Student s)->s.name).reversed());
+		
+		list1.sort(Comparator.comparingDouble(s->s.weight));
+		list1.sort(Comparator.comparing((Student s)->s.weight).reversed());
+		
+		list1.sort(Comparator.comparingInt((Student s) -> s.id)
+   .thenComparing(Comparator.comparing((Student s) -> s.name).reversed())
+   .thenComparing(Comparator.comparingDouble((Student s)->s.weight)));
+		
+		
+		list1.forEach(s -> System.out.println(s.weight));
     }
 }

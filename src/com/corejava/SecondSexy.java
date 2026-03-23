@@ -2,18 +2,32 @@ package com.corejava;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
-public class SecondSexy {
+public class SecondSexy 
+{
 	public static void main(String[] args) 
 	{
-		List<Integer> list1 = new ArrayList<>(Arrays.asList(1,2,3,4,5));
-		list1.forEach(System.out::println);
-		
-		List<Integer> list2 = new LinkedList<>();
-		list2.addAll(Arrays.asList(1,2,3,4,5));
-		list2.forEach(System.out::print);
+	    List<Integer> list2 = new ArrayList<>(); 
+	    list2.addAll(Arrays.asList(0,1,2,3,4,5,6));
+	    
+	    ListIterator<Integer> it = list2.listIterator();
+	    while(it.hasNext())
+	    {
+	    	int x = it.next();
+	    	if(x == 4)
+	    	{
+	    		it.remove();
+	    		it.set(19);
+	    		
+	    		it.add(9);
+	    		
+	    		
+	    	}
+	    	else
+	    		System.out.println(x);
+	    }
+	    System.out.println(list2);
 	}
-
 }
